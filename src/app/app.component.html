@@ -1,0 +1,24 @@
+  <div id="root">
+    <div class="game">
+      <div class="game-board">
+        <div>
+          <div class="status">{{info}}{{ player }}</div>  
+          <ng-container *ngFor="let box of boxes; let i = index; ngDoCheck">
+            <app-grid-box [box]="box" [column]="box.column" [row]="box.row" (submit)="selectBox($event)" ></app-grid-box>
+            <div *ngIf="(i % 3) == 0"></div>     
+          </ng-container> 
+      </div>
+    </div>
+  </div>
+  <div class="game-info">
+    <br/>
+    <div>{{ result }}</div>
+    <br/>
+    <button [disabled]="activeGame" (click)="newGame()">New Game</button>
+    <ol>
+      <li *ngFor="let move of moves; let i = index; ngDoCheck">
+        <button (click)="gotoMove(move.MoveNumber)">{{ move.Detail }}</button>
+      </li>
+    </ol>
+  </div>
+</div>
